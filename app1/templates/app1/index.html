@@ -1,0 +1,100 @@
+{% extends 'app1/base.html' %}
+{% block mainbody %}
+
+<style>
+    body {
+        background: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+        border-bottom: 1px solid #eee;
+    }
+
+    .card-body h5 {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .btn-success {
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-weight: 500;
+        transition: transform 0.3s ease;
+    }
+    .btn-success:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-primary, .btn-danger {
+        border-radius: 20px;
+        padding: 6px 18px;
+        font-weight: 500;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container mt-5">
+
+    <!-- Add Item Button -->
+    <div class="text-center mb-5">
+        <a href="{% url 'app1:itemForm' %}" class="btn btn-success btn-lg shadow">
+            ➕ Add Your Item
+        </a>
+    </div>
+
+    <!-- Item Cards -->
+    <div class="row justify-content-center">
+        {% for i in datas %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+
+                <!-- Image -->
+                <a href="#" class="text-decoration-none text-dark">
+                    <img src="{{ i.image.url }}" class="card-img-top" alt="Item Image" style="height: 220px; object-fit: cover;">
+                </a>
+
+                <!-- Details -->
+                <div class="card-body">
+                    <h5 class="card-title text-center">📦 {{ i.name }}</h5>
+                    <p class="card-text mb-1"><strong>💰 Price:</strong> ₹{{ i.rate }}</p>
+                    <p class="card-text"><strong>🌟 Quality:</strong> {{ i.quality }}</p>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="card-footer d-flex justify-content-center gap-2 bg-white">
+                    <a href="{% url 'app1:updates' i.id %}" class="btn btn-primary btn-sm">✏️ Update</a>
+                    <a href="{% url 'app1:deletes' i.id %}" class="btn btn-danger btn-sm">🗑️ Delete</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-muted fs-5">No items found. Add one using the button above.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

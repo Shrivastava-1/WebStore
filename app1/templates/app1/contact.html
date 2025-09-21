@@ -1,0 +1,90 @@
+{% extends 'app1/base.html' %}
+{% block mainbody %}
+
+<style>
+    body {
+        background: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-weight: 500;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">📬 Contact Us</h2>
+        <p class="text-muted">Have questions or feedback? Reach out to us!</p>
+    </div>
+
+    <div class="row">
+
+        <!-- Contact Form -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm p-4">
+                <h5 class="mb-4">Send a Message</h5>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="Your Name" value="{{ Feedbackform.name.value }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                               placeholder="Your Email" value="{{ Feedbackform.email.value }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5"
+                                  placeholder="Your Message">{{ Feedbackform.message.value }}</textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm p-4">
+                <h5 class="mb-4">Get in Touch</h5>
+                <p><i class="bi bi-geo-alt-fill me-2"></i><strong>Address:</strong> Ujjain, MP 456006, India</p>
+                <p><i class="bi bi-envelope-fill me-2"></i><strong>Email:</strong> chitranshshrivastava102@gmail.com</p>
+                <p><i class="bi bi-telephone-fill me-2"></i><strong>Phone:</strong> +91 78 792 948 46</p>
+                <p><i class="bi bi-clock-fill me-2"></i><strong>Working Hours:</strong> Mon-Fri, 9AM - 6PM</p>
+
+                <div class="mt-4">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Ujjain&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

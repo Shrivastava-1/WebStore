@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+  <style>
+    /* Navbar */
+    #navbar-bg {
+      transition: all 0.3s ease-in-out;
+    }
+
+    #navbar-bg .nav-link:hover {
+      color: #007bff !important;
+      transform: scale(1.05);
+    }
+
+    .dropdown-menu {
+      border-radius: 10px;
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(180deg, #1c2331, #141824);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+      color: #ffb74d !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav id="navbar-bg" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="{% url 'app1:index' %}">
+        <i class="bi bi-shop"></i> WebStore
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <!-- Grocery Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="groceryDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-cart3"></i> Grocery
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'app1:food' %}">Foods</a></li>
+              <li><a class="dropdown-item" href="{% url 'app1:vegetable' %}">Vegetables</a></li>
+              <li><a class="dropdown-item" href="{% url 'app1:dairy' %}">Dairy</a></li>
+              <li><a class="dropdown-item" href="{% url 'app1:meat' %}">Meat & Fish</a></li>
+            </ul>
+          </li>
+
+          <!-- Clothes Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="clothesDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-handbag-fill"></i> Clothes
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'app1:mens' %}">Men's</a></li>
+              <li><a class="dropdown-item" href="{% url 'app1:womens' %}">Women's</a></li>
+              <li><a class="dropdown-item" href="{% url 'app1:kids' %}">Kids</a></li>
+            </ul>
+          </li>
+
+          <!-- Contact & About -->
+          <li class="nav-item"><a class="nav-link" href="{% url 'app1:contact' %}"><i class="bi bi-envelope"></i> Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'app1:aboutUS' %}"><i class="bi bi-info-circle"></i> About</a></li>
+
+                    <!-- Auth Links -->
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown d-flex align-items-center">
+              <a class="nav-link dropdown-toggle d-flex align-items-center text-success fw-semibold" href="#" id="userMenu" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{{ user.profile.image.url }}" alt="Profile Image" class="rounded-circle me-2 shadow-sm"
+                      style="width: 40px; height: 40px; object-fit: cover;">
+                  <span>{{ user.username }}</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{% url 'users:profile' %}"><i class="bi bi-person-fill me-2"></i>Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item text-danger" href="{% url 'users:logouts' %}"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+              </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link text-primary fw-bold" href="{% url 'users:login' %}"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Body -->
+  <br>
+  {% block mainbody %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start text-white mt-5">
+    <!-- Social media -->
+    <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+      <div class="me-5"><span>Get connected with us on social networks:</span></div>
+      <div>
+        <a href="https://www.facebook.com/Cshrivastava.1/" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-google"></i></a>
+        <a href="https://www.instagram.com/chitranshshrivastava1/" class="text-white me-4"><i
+            class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/chitranshh1/" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Shrivastava-1" class="text-white me-4"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+
+    <!-- Footer Links -->
+    <section>
+      <div class="container text-center text-md-start mt-5">
+        <div class="row mt-3">
+          <!-- Company -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Web Store</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width:60px; background:#7c4dff; height:2px" />
+            <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet.</p>
+          </div>
+
+          <!-- Products -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Products</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width:60px; background:#7c4dff; height:2px" />
+            <p><a href="#!" class="text-white text-decoration-none">MDBootstrap</a></p>
+            <p><a href="#!" class="text-white text-decoration-none">MDWordPress</a></p>
+            <p><a href="#!" class="text-white text-decoration-none">BrandFlow</a></p>
+            <p><a href="#!" class="text-white text-decoration-none">Bootstrap Angular</a></p>
+          </div>
+
+          <!-- Links -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Useful links</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width:60px; background:#7c4dff; height:2px" />
+            <p><a href="https://github.com/Shrivastava-1" class="text-white text-decoration-none">Github</a></p>
+            <p><a href="https://www.instagram.com/chitranshshrivastava1/" class="text-white text-decoration-none">Instagram</a></p>
+            <p><a href="https://www.facebook.com/Cshrivastava.1/" class="text-white text-decoration-none">Facebook</a></p>
+            <p><a href="https://www.linkedin.com/in/chitranshh1/" class="text-white text-decoration-none">LinkedIn</a></p>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Contact</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width:60px; background:#7c4dff; height:2px" />
+            <p><i class="fas fa-home me-2"></i> Ujjain, MP 456006, INDIA</p>
+            <p><i class="fas fa-envelope me-2"></i> chitranshshrivastava102@gmail.com</p>
+            <p><i class="fas fa-phone me-2"></i> +91 78 792 948 46</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background: rgba(0, 0, 0, 0.2)">
+      © 2025 Copyright:
+      <a class="text-white text-decoration-none" href="#">MyStore</a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block mainbody %}
+
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">About WebStore</h1>
+        <p class="lead text-muted">Learn more about our mission, vision, and team.</p>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <img src="/media/profile/bg.png" class="img-fluid rounded shadow" alt="Mission Image">
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold">Our Mission</h2>
+            <p class="text-muted">
+                Our mission is to provide the best online shopping experience with quality products and reliable delivery. 
+                We aim to make online shopping simple, safe, and enjoyable for everyone.
+            </p>
+            <h2 class="fw-bold mt-4">Our Vision</h2>
+            <p class="text-muted">
+                We envision a world where everyone can access high-quality products at the click of a button, 
+                while enjoying exceptional service and support.
+            </p>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Meet Our Team</h2>
+        <p class="text-muted">Passionate individuals behind WebStore</p>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 p-3">
+                <img src="/media/profile/chitransh.jpg" class="rounded-circle mb-3" style="width:120px; height:120px; object-fit:cover;" alt="Chitransh">
+                <h5 class="fw-bold">Chitransh Shrivastava</h5>
+                <p class="text-muted">Founder & CEO</p>
+                <div>
+                    <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-dark"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 p-3">
+                <img src="/media/profile/chirag.jpg" class="rounded-circle mb-3"style="width:120px; height:120px; object-fit:cover;" alt="Chirag">
+                <h5 class="fw-bold">Chirag Salanki</h5>
+                <p class="text-muted">Marketing Head</p>
+                <div>
+                    <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-dark"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 p-3">
+                <img src="/media/profile/monu.jpg" class="rounded-circle mb-3" style="width:120px; height:120px; object-fit:cover;" alt="Monu">
+                <h5 class="fw-bold">Chitransh Ludhiyani</h5>
+                <p class="text-muted">Tech Lead</p>
+                <div>
+                    <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-dark"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5 mb-5">
+        <h3 class="fw-bold">Want to know more?</h3>
+        <p class="text-muted">Contact us today and become a part of our growing community!</p>
+        <a href="#" class="btn btn-primary btn-lg rounded-pill px-4">Contact Us</a>
+    </div>
+</div>
+
+{% endblock %}
