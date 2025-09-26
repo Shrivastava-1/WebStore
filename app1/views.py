@@ -3,13 +3,13 @@ from rest_framework import viewsets
 from .models import Allitems, Description
 from .form import AddItems, AddDescription, FeedbackForm
 from app1.serializers import ClassSerializer
-
+from .middleware import authenticateRequired
 
 class ViewSerializer(viewsets.ModelViewSet):
     queryset = Allitems.objects.all()
     serializer_class = ClassSerializer
 
-
+@authenticateRequired
 def home(request):
     datas = Allitems.objects.all()
     context = {'datas':datas}
