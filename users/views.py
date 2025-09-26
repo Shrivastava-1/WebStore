@@ -2,8 +2,9 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import logout
 from .form import Registration, ProfileUpdate, UserUpdateForm
 from django.contrib.auth.models import User
+from app1.middleware import authenticated
 
-
+@authenticated
 def register(request):
     if request.method == 'POST':
         register_form = Registration(request.POST)

@@ -6,3 +6,10 @@ def authenticateRequired(view_function):
             return redirect('users:login')
         return view_function(request, *args, **kwargs)
     return wrapped_view
+
+def authenticated(view_function):
+    def wrapped_view(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('app1:index')
+        return view_function(request, *args, **kwargs)
+    return wrapped_view
