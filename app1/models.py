@@ -26,13 +26,13 @@ def upload(instance, filename):
 
 class Allitems(models.Model):
     FIELD_CHOICES = [
-        ('food', 'food'),
-        ('vegetable', 'vegetable'),
-        ('dairy', 'dairy'),
-        ('meat', 'meat'),
-        ('mens', 'mens'),
-        ('womens', 'womens'),
-        ('kids', 'kids'),
+        ('Food', 'Food'),
+        ('Vegetable', 'Vegetable'),
+        ('Dairy', 'Dairy'),
+        ('Meat', 'Meat'),
+        ('Mens', 'Mens'),
+        ('Womens', 'Womens'),
+        ('Kids', 'Kids'),
     ]
 
     name = models.CharField(max_length=255, blank=True)
